@@ -38,7 +38,6 @@ public class OpenApiConfig {
                                         .type(SecurityScheme.Type.HTTP)
                                         .scheme("bearer")
                                         .bearerFormat("JWT")
-                                        .description("JWT token para autenticación")))
-                .security(List.of(new SecurityRequirement().addList("bearerAuth")));
+                                        .description("JWT token para autenticación")));
     }
 }
