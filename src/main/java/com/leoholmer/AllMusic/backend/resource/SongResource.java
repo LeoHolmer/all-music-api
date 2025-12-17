@@ -10,6 +10,12 @@ import com.leoholmer.AllMusic.backend.model.Song;
 import com.leoholmer.AllMusic.backend.model.User;
 import com.leoholmer.AllMusic.backend.service.AuthorizationService;
 import com.leoholmer.AllMusic.backend.service.SongService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +27,8 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/songs")
+@Tag(name = "Songs", description = "API para gestión de canciones")
+@SecurityRequirement(name = "bearerAuth")
 public class SongResource {
 
     @Autowired
@@ -47,6 +55,12 @@ public class SongResource {
     }
 
     @PostMapping
+    @Operation(summary = "Crear una nueva canción", description = "Permite a un artista crear una nueva canción en el sistema")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Canción creada exitosamente"),
+            @ApiResponse(responseCode = "400", description = "Datos inválidos"),
+            @ApiResponse(responseCode = "401", description = "No autorizado")
+    })
     public ResponseEntity<?> createSong(@Valid @RequestBody SongRequestDTO dto,
                                         @RequestHeader("Authorization") String token) {
         User user = authorizationService.authorize(extractToken(token));
@@ -72,9 +86,14 @@ public class SongResource {
     }
 
     @GetMapping
+    @Operation(summary = "Obtener lista de canciones", description = "Obtiene una lista de canciones con filtros opcionales por artista y género")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de canciones obtenida exitosamente"),
+            @ApiResponse(responseCode = "401", description = "No autorizado")
+    })
     public ResponseEntity<List<SongResponseDTO>> getSongs(
-            @RequestParam(required = false) String artist,
-            @RequestParam(required = false) String genreParam,
+            @Parameter(description = "Filtrar por nombre del artista") @RequestParam(required = false) String artist,
+            @Parameter(description = "Filtrar por género musical") @RequestParam(required = false) String genreParam,
             @RequestHeader("Authorization") String token) {
 
         authorizationService.authorize(extractToken(token));

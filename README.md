@@ -41,6 +41,21 @@ Una aplicación de música construida con Spring Boot, que permite gestionar usu
    ./mvnw spring-boot:run
    ```
 
+## Documentación de la API
+
+La documentación completa de la API está disponible a través de Swagger UI:
+
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
+
+### Autenticación
+
+Para acceder a los endpoints protegidos, incluye el token JWT en el header `Authorization`:
+
+```
+Authorization: Bearer <tu-token-jwt>
+```
+
 ## Endpoints Principales
 
 - `POST /api/auth/login` - Login de usuario
