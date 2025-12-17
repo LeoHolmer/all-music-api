@@ -1,68 +1,63 @@
-# AllMusic
+# 🎵 All Music – RESTful Backend
 
-Una aplicación de música construida con Spring Boot, que permite gestionar usuarios, canciones y playlists.
+**All Music** is a backend developed in **Java with Spring Boot**, implementing a RESTful API to manage a music ecosystem where **artists** and **enthusiasts** coexist. Artists can create and manage their own songs, while all users can create and manage playlists containing songs from any artist.
 
-## Tecnologías Utilizadas
+This project is part of the **Object-Oriented Programming (2024)** course at the **National University of the Northwest of the Province of Buenos Aires (UNNOBA)**.
 
-- **Java 21** (LTS)
-- **Spring Boot 3.4.2**
-- **Spring Data JPA**
-- **Spring Security**
-- **PostgreSQL** (base de datos)
-- **JWT** (autenticación)
-- **Maven** (gestión de dependencias)
+---
 
-## Características
+## 📌 Key Features
 
-- Gestión de usuarios
-- Catálogo de canciones
-- Creación de playlists
-- Autenticación JWT
-- API RESTful
+- ✅ **Authentication and authorization** based on **JWT** (JSON Web Token).
+- 🎤 **Song management**: only artists can create, update, or delete their own songs.
+- 📋 **Playlist management**: any user can create playlists and add songs from other artists.
+- 🔒 **Access control**: only the owners of resources can modify or delete them.
+- 🎭 **Two user types**:
+  - **Music Artist**: can create songs.
+  - **Music Enthusiast**: can only consume and organize content.
 
-## Requisitos Previos
+---
 
-- JDK 21
-- Maven 3.6+
-- PostgreSQL
+## 🛠️ Technologies Used
 
-## Instalación y Ejecución
+- **Language**: Java 17+
+- **Framework**: Spring Boot 3.x
+- **Persistence**: Spring Data JPA + Hibernate
+- **Database**: H2 (in-memory) or any JPA-compatible database
+- **Security**: JWT + Bcrypt (via Password4j)
+- **DTO Mapping**: ModelMapper
+- **Validation**: Bean Validation (built into Spring)
+- **Key Dependencies**:
+  - `com.auth0:java-jwt`
+  - `com.password4j:password4j`
 
-1. Clona el repositorio:
+## 🚀 How to Run the Project
+
+1. **Clone the repository**
    ```bash
-   git clone https://github.com/LeoHolmer/AllMusic.git
-   cd AllMusic
+   git clone https://github.com/your-username/all-music.git
+   cd all-music
    ```
 
-2. Configura la base de datos en `src/main/resources/application.properties`
+2. **Build with Maven**
+   ```bash
+   ./mvnw clean install
+   ```
 
-3. Ejecuta la aplicación:
+3. **Start the application**
    ```bash
    ./mvnw spring-boot:run
    ```
+   The server will run at `http://localhost:8080`.
 
-## Endpoints Principales
+4. **(Optional)** Modify `application.properties` to use a different database.
 
-- `POST /api/auth/login` - Login de usuario
-- `GET /api/users` - Lista de usuarios
-- `POST /songs` - Crear canción
-- `GET /playlists` - Lista de playlists
+---
 
-## Tests
+## 📝 License
 
-Ejecuta los tests con:
-```bash
-./mvnw test
-```
+This project is for educational purposes only and is not intended for commercial use.  
+© 2024 – Object-Oriented Programming Chair, UNNOBA.
 
-## Contribución
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
-## Licencia
-
-Este proyecto está bajo la Licencia MIT.
+Ready to rock? 🎸  
+Happy coding! 🎶
